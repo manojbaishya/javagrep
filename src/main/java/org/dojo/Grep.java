@@ -15,6 +15,8 @@ import java.util.regex.Pattern;
 
 @CommandLine.Command(name = "Grep", version = "1.0.0", mixinStandardHelpOptions = true)
 public class Grep implements Runnable {
+
+    // region: Command Line Parameters
     @CommandLine.Parameters(index = "0", hidden = true)
     private String programName;
 
@@ -33,18 +35,38 @@ public class Grep implements Runnable {
     @CommandLine.Parameters(index = "2", paramLabel = "<file>", description = "The file to search in")
     private String path;
 
+    // endregion
+
     @Override
     public void run() {
         if (isRecurse) {
-            Path rootPath = Paths.get(path);
-            if (!Files.isDirectory(rootPath)) throw new IllegalArgumentException("Path '%s' is not a directory.".formatted(rootPath.toUri()));
-            List<Path> paths = getAllFilePaths(rootPath);
-            for (Path filepath : paths) {
-                List<String> lines = filterLines(filepath, false);
-                processData(lines, rootPath.toAbsolutePath().relativize(filepath.toAbsolutePath()).toString());
+            if (path.equals("-")) {
+                try (var reader = new BufferedReader(new InputStreamReader(System.in))) {
+                    String directoryPath;
+                    while((directoryPath = reader.readLine()) != null) {
+                        Path rootPath = Paths.get(directoryPath);
+                        if (!Files.isDirectory(rootPath)) throw new IllegalArgumentException("Path '%s' is not a directory.".formatted(rootPath.toUri()));
+                        List<Path> paths = getAllFilePaths(rootPath);
+                        for (Path filepath : paths) {
+                            List<String> lines = filterLines(filepath, false);
+                            processData(lines, rootPath.toAbsolutePath().relativize(filepath.toAbsolutePath()).toString());
+                        }
+                    }
+                } catch (IOException error) {
+                    System.err.printf("Error reading file '%s'%n", error.getMessage());
+                }
+            } else {
+                Path rootPath = Paths.get(path);
+                if (!Files.isDirectory(rootPath)) throw new IllegalArgumentException("Path '%s' is not a directory.".formatted(rootPath.toUri()));
+                List<Path> paths = getAllFilePaths(rootPath);
+                for (Path filepath : paths) {
+                    List<String> lines = filterLines(filepath, false);
+                    processData(lines, rootPath.toAbsolutePath().relativize(filepath.toAbsolutePath()).toString());
+                }
             }
+
         } else {
-            if ("-".equals(path)) {
+            if (path.equals("-")) {
                 List<String> lines = filterLines(null, true);
                 processData(lines);
             } else {
