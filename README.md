@@ -118,35 +118,137 @@ essays/BFS1985.txt:Bruce Springsteen, Madonna, way before Nirvana
 
 ### Support inverse matching
 
+**Input**:
 ```shell
-java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main --recursive Nirvana src/test/resources | java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main -v Springsteen -
+java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main --recursive Nirvana target/test-classes | java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main -v Springsteen -
 ```
 
+**Output**:
+```
+rockbands.txt:Nirvana
 ```
 
-```
-
+**Input**:
 ```shell
-java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main --recursive Nirvana src/test/resources | java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main -v Madonna -
+java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main --recursive Madonna target/test-classes | java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main -v radio -
+```
+
+**Output**:
+```
+essays/BFS1985.txt:Since Bruce Springsteen, Madonna, way before Nirvana
+essays/BFS1985.txt:And bring back Springsteen, Madonna, way before Nirvana
+essays/BFS1985.txt:Bruce Springsteen, Madonna, way before Nirvana
 ```
 
 ### Support digit and word search patterns
 
+**Input**:
 ```shell
-java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main "\d" src/test/resources/essays/BFS1985.txt
-java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main "\d" src/test/resources/essays/BFS1985.txt
+java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main "\d" target/test-classes/essays/BFS1985.txt
+```
+
+**Output**:
+```
+Her dreams went out the door when she turned 24
+There was U2 and Blondie, and music still on MTV
+'Cause she's still preoccupied with 19, 19, 1985, 1985
+There was U2 and Blondie, and music still on MTV
+'Cause she's still preoccupied with 19, 19, 1985
+There was U2 and Blondie, and music still on MTV
+'Cause she's still preoccupied with 1985
+There was U2 and Blondie, and music still on MTV
+'Cause she's still preoccupied with 19, 19, 1985
+```
+
+**Input**:
+```shell
+java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main "\w" target/test-classes/essays/BFS1985.txt
+```
+
+**Output**:
+```
+Debbie just hit the wall, she never had it all
+One Prozac a day, husband's a CPA
+Her dreams went out the door when she turned 24
+Only been with one man, what happened to her plan?
+She was gonna be an actress, she was gonna be a star
+She was gonna shake her ass on the hood of Whitesnake's car
+Her yellow SUV is now the enemy
+Looks at her average life, and nothing has been alright
+Since Bruce Springsteen, Madonna, way before Nirvana
+There was U2 and Blondie, and music still on MTV
+Her two kids in high school, they tell her that she's uncool
+'Cause she's still preoccupied with 19, 19, 1985, 1985
+She's seen all the classics, she knows every line
+Breakfast Club, Pretty in Pink, even Saint Elmo's Fire
+She rocked out to Wham, not a big Limp Bizkit fan
+Thought she'd get a hand on a member of Duran Duran
+Where's the mini-skirt made of snake skin?
+And who's the other guy that's singing in Van Halen?
+When did reality become TV?
+Whatever happened to sitcoms, game shows on the radio?
+On the radio was Springsteen, Madonna, way before Nirvana
+There was U2 and Blondie, and music still on MTV
+Her two kids in high school, they tell her that she's uncool
+'Cause she's still preoccupied with 19, 19, 1985
+She hates time, make it stop
+When did Mötley Crüe become classic rock? (Classic rock)
+And when did Ozzy become an actor?
+Please make this stop, stop, STOP!
+And bring back Springsteen, Madonna, way before Nirvana
+There was U2 and Blondie, and music still on MTV
+Her two kids in high school, they tell her that she's uncool
+'Cause she's still preoccupied with 1985
+Bruce Springsteen, Madonna, way before Nirvana
+There was U2 and Blondie, and music still on MTV
+Her two kids in high school, they tell her that she's uncool
+'Cause she's still preoccupied with 19, 19, 1985
 ```
 
 ### Support beginning-of-line and end-of-line matching
 
+**Input**:
 ```shell
-java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main "^A" src/test/resources/rockbands.txt
-java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main "na$" src/test/resources/rockbands.txt
+java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main "^A" target/test-classes/rockbands.txt
+```
+
+**Output**:
+```
+AC/DC
+Aerosmith
+Accept
+April Wine
+Autograph
+```
+
+**Input**:
+```shell
+java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main "na$" target/test-classes/rockbands.txt
+```
+
+**Output**:
+```
+Nirvana
 ```
 
 ### Support case-insensitive search
 
+**Input**:
 ```shell
-java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main A src/test/resources/rockbands.txt | wc -l
-java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main -i A src/test/resources/rockbands.txt | wc -l
+java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main A target/test-classes/rockbands.txt | wc -l
+```
+
+**Output**:
+```
+8
+```
+
+**Input**:
+```shell
+java -jar target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main -i A target/test-classes/rockbands.txt | wc -l
+```
+
+**Output**:
+```
+58
 ```
