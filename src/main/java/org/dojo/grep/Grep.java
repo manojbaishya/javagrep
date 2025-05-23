@@ -2,13 +2,17 @@ package org.dojo.grep;
 
 import picocli.CommandLine;
 
+import java.util.List;
+
 @CommandLine.Command(name = "Grep", version = "2.0.0", mixinStandardHelpOptions = true)
 public class Grep implements Runnable {
     @Override
     public void run() {
-        var params = new GrepParameters(pattern, path, isRecursive, ignoreCase, isInvertMatch);
-        Processor processor = ProcessorFactory.create(params);
-        processor.process();
+        for (String path : paths) {
+            var params = new GrepParameters(pattern, path, isRecursive, ignoreCase, isInvertMatch);
+            Processor processor = ProcessorFactory.create(params);
+            processor.process();
+        }
     }
 
     // region: Command Line Parameters
@@ -27,7 +31,7 @@ public class Grep implements Runnable {
     @CommandLine.Parameters(index = "1", paramLabel = "<regex>", defaultValue = "", description = "The regex pattern to search in file")
     private String pattern;
 
-    @CommandLine.Parameters(index = "2", paramLabel = "<file>", description = "The file to search in")
-    private String path;
+    @CommandLine.Parameters(index = "2..*", paramLabel = "<file>", description = "The file to search in")
+    private List<String> paths;
     // endregion
 }

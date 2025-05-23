@@ -7,9 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class StdinDirectoryProcessor implements Processor {
+public class StandardInputDirectoryProcessor implements Processor {
     private final DirectoryFilterAndWriter directoryFilterAndWriter;
-    public StdinDirectoryProcessor(LineFilter filter, DirectoryWriter writer) { this.directoryFilterAndWriter = new DirectoryFilterAndWriterImpl(filter, writer); }
+    public StandardInputDirectoryProcessor(LineFilter filter) { this.directoryFilterAndWriter = new DirectoryFilterAndWriterImpl(filter, new DirectoryWriterImpl()); }
 
     @Override
     public void process() {

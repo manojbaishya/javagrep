@@ -2,24 +2,24 @@ package org.dojo.grep;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class FileProcessor implements Processor {
-    private final InputProvider inputProvider;
-    private final LineFilter filter;
-    private final Writer writer;
+    private final Path path;
+    private final FileFilterAndWriter fileFilterAndWriter;
 
-    public FileProcessor(InputProvider inputProvider, LineFilter filter) {
-        this.inputProvider = inputProvider;
-        this.filter = filter;
-        this.writer = new FileWriterImpl();
+    public FileProcessor(Path path, LineFilter filter) {
+        this.path = path;
+        fileFilterAndWriter = new LineFilterAndWriter(filter, new LineWriter());
     }
 
     @Override
     public void process() {
-        try (BufferedReader reader = inputProvider.getReader()) {
-            List<String> lines = filter.filter(reader);
-            writer.processData(lines);
+        if (!Validations.run(path)) return;
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
+            fileFilterAndWriter.setReader(reader);
+            fileFilterAndWriter.execute();
         } catch (IOException e) {
             System.err.printf("Error: %s%n", e.getMessage());
         }

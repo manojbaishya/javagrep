@@ -21,6 +21,7 @@ public class DirectoryFilterAndWriterImpl implements DirectoryFilterAndWriter {
         try (Stream<Path> files = Files.walk(rootPath)) {
             List<Path> regularFiles = files.filter(Files::isRegularFile).toList();
             for (Path path : regularFiles) {
+                if (!Validations.run(path)) continue;
                 try (BufferedReader reader = Files.newBufferedReader(path)) {
                     List<String> lines = filter.filter(reader);
                     writeResult(path, lines);
