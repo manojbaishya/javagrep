@@ -1,4 +1,5 @@
-Coding challenge by John Crickett.
+Coding Challenge: Build Your Own grep by John Crickett
+
 ## Build Your Own grep
 https://codingchallenges.fyi/challenges/challenge-grep/
 
