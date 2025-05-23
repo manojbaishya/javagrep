@@ -16,7 +16,7 @@ public class FileProcessor implements Processor {
 
     @Override
     public void process() {
-        if (!Validations.run(path)) return;
+        if (Validations.isAnyFailed(path)) return;
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             fileFilterAndWriter.setReader(reader);
             fileFilterAndWriter.execute();
