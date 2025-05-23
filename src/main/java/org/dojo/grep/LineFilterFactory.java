@@ -1,4 +1,4 @@
-package org.dojo;
+package org.dojo.grep;
 
 public class LineFilterFactory {
     public static LineFilter create(String regex, boolean ignoreCase, boolean invertMatch) {

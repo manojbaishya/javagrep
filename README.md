@@ -14,7 +14,7 @@ Picocli - https://picocli.info/
 `<filename>` is from `src/test/resources`.
 or 
 ```shell
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep "<pattern>" "<filename>"
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Main "<pattern>" "<filename>"
 ```
 `<filename>` is from `target/test-classes/resources`.
 
@@ -45,39 +45,39 @@ java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep "<pattern>" "<filenam
 ### Support recursively listing a directory
 
 ```shell
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep --recurse Nirvana ./src/test/resources/
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep --recurse heaven ./src/test/resources/
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep --recurse Nirvana ./src/test/resources/
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep --recurse heaven ./src/test/resources/
 ```
 
 ### Support piping input from standard input
 ```shell
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep --recurse Nirvana ./src/test/resources/ | java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep Madonna -
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep --recurse Nirvana ./src/test/resources/ | java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep Madonna -
 ```
 
 ### Support inverse matching
 
 ```shell
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep --recursive Nirvana ./src/test/resources/ | java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep -v Springsteen -
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep --recursive Nirvana ./src/test/resources/ | java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep -v Madonna -
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep --recursive Nirvana ./src/test/resources/ | java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep -v Springsteen -
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep --recursive Nirvana ./src/test/resources/ | java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep -v Madonna -
 ```
 
 ### Support digit and word search patterns
 
 ```shell
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep "\d" ./src/test/resources/essays/BFS1985.txt
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep "\d" ./src/test/resources/essays/BFS1985.txt
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep "\d" ./src/test/resources/essays/BFS1985.txt
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep "\d" ./src/test/resources/essays/BFS1985.txt
 ```
 
 ### Support beginning-of-line and end-of-line matching
 
 ```shell
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep "^A" ./src/test/resources/rockbands.txt
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep "na$" ./src/test/resources/rockbands.txt
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep "^A" ./src/test/resources/rockbands.txt
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep "na$" ./src/test/resources/rockbands.txt
 ```
 
 ### Support case-insensitive search
 
 ```shell
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep A ./src/test/resources/rockbands.txt | wc -l
-java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.Grep -i A ./src/test/resources/rockbands.txt | wc -l
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep A ./src/test/resources/rockbands.txt | wc -l
+java -jar ./target/javagrep-1.0-SNAPSHOT.jar org.dojo.grep.Grep -i A ./src/test/resources/rockbands.txt | wc -l
 ```

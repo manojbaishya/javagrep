@@ -1,4 +1,4 @@
-package org.dojo;
+package org.dojo.grep;
 
 public interface Processor {
     void process();

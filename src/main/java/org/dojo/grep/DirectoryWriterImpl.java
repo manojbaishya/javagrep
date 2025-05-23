@@ -1,4 +1,4 @@
-package org.dojo;
+package org.dojo.grep;
 
 import java.nio.file.Path;
 import java.util.List;

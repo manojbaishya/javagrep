@@ -1,4 +1,4 @@
-package org.dojo;
+package org.dojo.grep;
 
 import java.io.BufferedReader;
 import java.io.IOException;
