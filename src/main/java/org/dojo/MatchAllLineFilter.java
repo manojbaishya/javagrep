@@ -6,5 +6,5 @@ import java.util.List;
 
 public class MatchAllLineFilter implements LineFilter {
     @Override
-    public List<String> filter(BufferedReader reader) throws IOException { return reader.lines().toList(); }
+    public List<String> filter(BufferedReader reader) { return reader.lines().toList(); }
 }
